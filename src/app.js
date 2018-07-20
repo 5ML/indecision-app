@@ -15,8 +15,8 @@ const template = (
         {app.subtitle && <p>{app.subtitle}</p>}
         <p>{app.options.length > 0 ? "Here are your options" : "No options"}</p>
         <ol>
-            <li>Item one</li>
-            <li>Item two</li>
+            <li>Item 1</li>
+            <li>Item 2</li>
         </ol>
         <form action="">
             <input type="text" name="option"/>

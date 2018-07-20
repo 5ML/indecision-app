@@ -32,12 +32,12 @@ var template = React.createElement(
         React.createElement(
             "li",
             null,
-            "Item one"
+            "Item 1"
         ),
         React.createElement(
             "li",
             null,
-            "Item two"
+            "Item 2"
         )
     ),
     React.createElement(
