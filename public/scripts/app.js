@@ -1,56 +1,44 @@
-"use strict";
-
-console.log('App.js is running');
-
-var app = {
-    title: "Title",
-    subtitle: "Subtitle",
-    options: ['One', 'Two']
-};
-
-var template = React.createElement(
-    "div",
-    null,
-    React.createElement(
-        "h1",
-        null,
-        app.title
-    ),
-    app.subtitle && React.createElement(
-        "p",
-        null,
-        app.subtitle
-    ),
-    React.createElement(
-        "p",
-        null,
-        app.options.length > 0 ? "Here are your options" : "No options"
-    ),
-    React.createElement(
-        "ol",
-        null,
-        React.createElement(
-            "li",
-            null,
-            "Item 1"
-        ),
-        React.createElement(
-            "li",
-            null,
-            "Item 2"
-        )
-    ),
-    React.createElement(
-        "form",
-        { action: "" },
-        React.createElement("input", { type: "text", name: "option" }),
-        React.createElement(
-            "button",
-            null,
-            "Add option"
-        )
-    )
-);
+'use strict';
 
 var appRoot = document.getElementById("app");
-ReactDOM.render(template, appRoot);
+
+var hidden = true;
+
+var onDetailsClick = function onDetailsClick() {
+    hidden = !hidden;
+    render();
+};
+
+var render = function render() {
+    var jsx = React.createElement(
+        'div',
+        null,
+        React.createElement(
+            'h1',
+            null,
+            'Visibility Toogle'
+        ),
+        React.createElement(
+            'button',
+            { onClick: onDetailsClick },
+            !hidden ? 'Hide details' : 'Show details'
+        ),
+        !hidden && React.createElement(
+            'div',
+            null,
+            React.createElement(
+                'p',
+                null,
+                'Details 1'
+            )
+        ),
+        React.createElement(
+            'p',
+            { hidden: hidden },
+            'Details 2'
+        )
+    );
+    ReactDOM.render(jsx, appRoot);
+};
+
+render();
