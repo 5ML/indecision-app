@@ -1,9 +1,47 @@
+class VisibilityToogle extends React.Component {
+    constructor(props) {
+        super(props);
+        this.toogleVisibility = this.toogleVisibility.bind(this);
+        this.state = { 
+            visibility: false
+        }
+    }
+    toogleVisibility() {
+        this.setState((prevState) => {
+            return {
+                visibility: !prevState.visibility
+            };
+        });
+    }    
+    render() {
+        return (
+            <div>
+                <h1>Visibility Toogle</h1>
+                <button onClick={this.toogleVisibility}>
+                   {this.state.visibility ? 'Hide details' : 'Show details'}
+                </button>
+                {this.state.visibility && (
+                    <div>
+                        <p>
+                            Details
+                        </p>
+                    </div>
+                )}
+            </div>
+        );
+    }
+}
+
+ReactDOM.render(<VisibilityToogle />, document.getElementById('app'));
+
+/*
+
 const appRoot = document.getElementById("app");
 
-let hidden = true;
+let visibility = true;
 
-const onDetailsClick = () => {
-    hidden = !hidden;
+const toogleVisibility = () => {
+    visibility = !visibility;
     render();
 }
 
@@ -11,19 +49,21 @@ const render = () => {
     const jsx = (
         <div>
             <h1>Visibility Toogle</h1>
-            <button onClick={onDetailsClick}>{!hidden ? 'Hide details' : 'Show details'}</button>
-            {}
-            {!hidden && (
+            <button onClick={toogleVisibility}>
+                {visibility ? 'Hide details' : 'Show details'}
+            </button>
+            {visibility && (
                 <div>
                     <p>
-                        Details 1
+                        Details
                     </p>
                 </div>
             )}
-            <p hidden={hidden}>Details 2</p>
         </div>
     );
     ReactDOM.render(jsx, appRoot);
 };
 
 render();
+
+*/
