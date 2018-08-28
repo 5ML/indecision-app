@@ -11,7 +11,7 @@ class IndecisionApp extends React.Component {
         selectedOption: undefined
     };
     handleOkayButtonClick = () => {
-        this.setState(() => ({ selectedOption: undefined}));
+        this.setState(() => ({ selectedOption: undefined }));
     }
     handleDeleteOptions = () => {
         this.setState(() => ({ options: [] }));
@@ -41,7 +41,7 @@ class IndecisionApp extends React.Component {
         try {
             const json = localStorage.getItem('options');
             const options = JSON.parse(json);
-    
+
             if (options) {
                 this.setState(() => ({ options }));
             }
@@ -54,7 +54,7 @@ class IndecisionApp extends React.Component {
             const json = JSON.stringify(this.state.options);
             localStorage.setItem('options', json);
             console.log('Saving data');
-        }      
+        }
     }
     componentWillUnmount() {
         console.log('componentWillUnmount');
@@ -65,19 +65,23 @@ class IndecisionApp extends React.Component {
         return (
             <div>
                 <Header subtitle={subtitle} />
-                <Action
-                    hasOptions={this.state.options.length > 0}
-                    handlePick={this.handlePick}
-                />
-                <Options
-                    options={this.state.options}
-                    handleDeleteOptions={this.handleDeleteOptions}
-                    handleDeleteOption={this.handleDeleteOption}
-                />
-                <AddOption
-                    handleAddOption={this.handleAddOption}
-                />
-                <OptionModal 
+                <div className="container">
+                    <Action
+                        hasOptions={this.state.options.length > 0}
+                        handlePick={this.handlePick}
+                    />
+                    <div className="widget">
+                        <Options
+                            options={this.state.options}
+                            handleDeleteOptions={this.handleDeleteOptions}
+                            handleDeleteOption={this.handleDeleteOption}
+                        />
+                        <AddOption
+                            handleAddOption={this.handleAddOption}
+                        />
+                    </div>
+                </div>
+                <OptionModal
                     selectedOption={this.state.selectedOption}
                     handleOkayButtonClick={this.handleOkayButtonClick}
                 />
